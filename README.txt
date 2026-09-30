@@ -11,7 +11,8 @@ Broker MQTT
 Broker la may chu trung gian nhan thong diep tu publisher va chuyen cho cac
 subscriber da dang ky topic. Bai nay dung broker cong khai HiveMQ tai
 broker.hivemq.com:1883, nen khong can cai hay chay Mosquitto. Broker nay dung
-chung; khong gui thong tin rieng tu hoac du lieu nhay cam len broker.
+chung. Bai 1 gui ten va ma sinh vien len broker theo yeu cau bai tap; khong
+gui them mat khau, thong tin tai khoan hoac du lieu rieng tu khac.
 
 Neu lop cap broker khac, dat MQTT_HOST va MQTT_PORT truoc khi chay; neu broker
 yeu cau tai khoan, dung MQTT_USERNAME va MQTT_PASSWORD.
