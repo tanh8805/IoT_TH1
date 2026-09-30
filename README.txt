@@ -4,26 +4,17 @@ THUC HANH PYTHON MQTT
 Can chuan bi
 ------------
 - Python 3.x
-- Eclipse Mosquitto
 - Thu vien Python: python -m pip install "paho-mqtt>=1.6,<3"
 
 Broker MQTT
 -----------
 Broker la may chu trung gian nhan thong diep tu publisher va chuyen cho cac
-subscriber da dang ky topic. Bai nay dung Mosquitto tren may tinh cua ban.
+subscriber da dang ky topic. Bai nay dung broker cong khai HiveMQ tai
+broker.hivemq.com:1883, nen khong can cai hay chay Mosquitto. Broker nay dung
+chung; khong gui thong tin rieng tu hoac du lieu nhay cam len broker.
 
-File mosquitto-lab.conf cau hinh broker lang nghe tai localhost:1884 va chi
-chap nhan ket noi tu chinh may do. Mo terminal tai thu muc bai tap va chay:
-
-  mosquitto -c mosquitto-lab.conf -v
-
-Neu Windows khong nhan lenh mosquitto, chay bang duong dan cai dat, vi du:
-
-  & "C:\Program Files\mosquitto\mosquitto.exe" -c ".\mosquitto-lab.conf" -v
-
-Giu cua so broker mo trong luc lam bai. Cac chuong trinh Python mac dinh dung
-localhost:1884. Neu lop cap broker khac, dat MQTT_HOST va MQTT_PORT truoc khi
-chay; neu broker yeu cau tai khoan, dung MQTT_USERNAME va MQTT_PASSWORD.
+Neu lop cap broker khac, dat MQTT_HOST va MQTT_PORT truoc khi chay; neu broker
+yeu cau tai khoan, dung MQTT_USERNAME va MQTT_PASSWORD.
 
 Cach chay
 ---------
@@ -62,4 +53,4 @@ Cac file bai tap
 ----------------
 publisher_bai1.py, subscriber_bai1.py, sensor_publisher_bai2.py,
 monitor_subscriber_bai2.py, device_bai3.py, controller_bai3.py,
-mqtt_config.py, mosquitto-lab.conf va README.txt.
+mqtt_config.py va README.txt.

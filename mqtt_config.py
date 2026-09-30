@@ -21,8 +21,8 @@ def create_client(client_id: str) -> mqtt.Client:
 
 
 def broker_settings() -> tuple[str, int, int]:
-    host = os.getenv("MQTT_HOST", "localhost")
-    port = int(os.getenv("MQTT_PORT", "1884"))
+    host = os.getenv("MQTT_HOST", "broker.hivemq.com")
+    port = int(os.getenv("MQTT_PORT", "1883"))
     keepalive = int(os.getenv("MQTT_KEEPALIVE", "60"))
     return host, port, keepalive
 
