@@ -9,11 +9,11 @@
 
 ## 1. Chuẩn bị
 
-- Python 3.x
-- Thư viện `paho-mqtt`:
+- Python 3.12
+- Thư viện `paho-mqtt` (code chạy được với cả paho-mqtt 1.6.x và 2.x nên không cần ghim version):
 
 ```bash
-python -m pip install "paho-mqtt>=1.6,<3"
+pip install paho-mqtt
 ```
 
 ## 2. Cấu hình MQTT broker
