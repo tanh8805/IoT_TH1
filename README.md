@@ -20,7 +20,7 @@ python -m pip install "paho-mqtt>=1.6,<3"
 
 Bài này dùng broker công khai **HiveMQ**: `broker.hivemq.com`, cổng `1883`. Không cần cài hay chạy Mosquitto.
 
-> Đây là broker dùng chung, không gửi thông tin riêng tư hoặc dữ liệu nhạy cảm lên broker.
+> Đây là broker dùng chung. Bài 1 gửi tên và mã sinh viên lên broker theo yêu cầu bài tập; không gửi thêm mật khẩu, thông tin tài khoản hoặc dữ liệu riêng tư khác.
 
 Có thể đổi broker bằng biến môi trường (đọc trong `mqtt_config.py`):
 
