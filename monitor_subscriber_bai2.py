@@ -10,10 +10,10 @@ TOPIC = "iot/lab/sensor01/data"
 
 def on_connect(client, userdata, flags, reason_code, properties=None):
     if reason_code == 0:
-        print(f"Da ket noi MQTT. Dang lang nghe {TOPIC}")
+        print(f"Đã kết nối MQTT. Đang lắng nghe {TOPIC}")
         client.subscribe(TOPIC, qos=1)
     else:
-        print(f"Khong the ket noi MQTT, ma loi: {reason_code}")
+        print(f"Không thể kết nối MQTT, mã lỗi: {reason_code}")
 
 
 def on_message(client, userdata, message):
@@ -23,7 +23,7 @@ def on_message(client, userdata, message):
         temperature = float(reading["temperature"])
         humidity = float(reading["humidity"])
     except (UnicodeDecodeError, json.JSONDecodeError, KeyError, TypeError, ValueError) as exc:
-        print(f"Bo qua payload khong hop le: {exc}")
+        print(f"Bỏ qua payload không hợp lệ: {exc}")
         return
 
     print(f"\nDevice: {device_id}")
@@ -44,7 +44,7 @@ def main() -> None:
         client.loop_forever()
     except (OSError, KeyboardInterrupt) as exc:
         if isinstance(exc, OSError):
-            print(f"Loi MQTT: {exc}")
+            print(f"Lỗi MQTT: {exc}")
     finally:
         client.disconnect()
 

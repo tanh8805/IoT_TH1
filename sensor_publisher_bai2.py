@@ -15,7 +15,7 @@ def main() -> None:
     try:
         connect(client)
         client.loop_start()
-        print(f"Da ket noi MQTT. Gui du lieu moi 3 giay len {TOPIC}; Ctrl+C de dung.")
+        print(f"Đã kết nối MQTT. Gửi dữ liệu mỗi 3 giây lên {TOPIC}; Ctrl+C để dừng.")
         while True:
             reading = {
                 "device_id": "sensor01",
@@ -24,12 +24,12 @@ def main() -> None:
             }
             payload = json.dumps(reading, ensure_ascii=False)
             client.publish(TOPIC, payload, qos=1)
-            print(f"Da gui: {payload}")
+            print(f"Đã gửi: {payload}")
             time.sleep(3)
     except KeyboardInterrupt:
-        print("\nDa dung sensor publisher.")
+        print("\nĐã dừng sensor publisher.")
     except OSError as exc:
-        print(f"Loi MQTT: {exc}")
+        print(f"Lỗi MQTT: {exc}")
     finally:
         client.loop_stop()
         client.disconnect()

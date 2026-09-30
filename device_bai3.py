@@ -12,23 +12,23 @@ status = "OFF"
 
 def on_connect(client, userdata, flags, reason_code, properties=None):
     if reason_code == 0:
-        print(f"Da ket noi MQTT. Dang cho lenh tai {COMMAND_TOPIC}")
+        print(f"Đã kết nối MQTT. Đang chờ lệnh tại {COMMAND_TOPIC}")
         client.subscribe(COMMAND_TOPIC, qos=1)
     else:
-        print(f"Khong the ket noi MQTT, ma loi: {reason_code}")
+        print(f"Không thể kết nối MQTT, mã lỗi: {reason_code}")
 
 
 def on_message(client, userdata, message):
     global status
     command = message.payload.decode("utf-8", errors="replace").strip().upper()
     if command not in {"ON", "OFF"}:
-        print(f"Lenh khong hop le: {command}")
+        print(f"Lệnh không hợp lệ: {command}")
         return
 
     status = command
     payload = json.dumps({"device_id": "light01", "status": status})
     client.publish(STATUS_TOPIC, payload, qos=1)
-    print(f"Nhan lenh {command}; da cap nhat trang thai den.")
+    print(f"Nhận lệnh {command}; đã cập nhật trạng thái đèn.")
 
 
 def main() -> None:
@@ -40,7 +40,7 @@ def main() -> None:
         client.loop_forever()
     except (OSError, KeyboardInterrupt) as exc:
         if isinstance(exc, OSError):
-            print(f"Loi MQTT: {exc}")
+            print(f"Lỗi MQTT: {exc}")
     finally:
         client.disconnect()
 

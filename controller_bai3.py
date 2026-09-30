@@ -14,7 +14,7 @@ def on_connect(client, userdata, flags, reason_code, properties=None):
     if reason_code == 0:
         client.subscribe(STATUS_TOPIC, qos=1)
     else:
-        print(f"Khong the ket noi MQTT, ma loi: {reason_code}")
+        print(f"Không thể kết nối MQTT, mã lỗi: {reason_code}")
 
 
 def on_subscribe(client, userdata, mid, granted_qos, properties=None):
@@ -35,22 +35,22 @@ def main() -> None:
         connect(client)
         client.loop_start()
         if not subscribed.wait(timeout=10):
-            raise TimeoutError("Chua dang ky duoc topic trang thai trong 10 giay.")
-        print("Da ket noi va dang ky topic trang thai. Nhap ON, OFF hoac EXIT.")
+            raise TimeoutError("Chưa đăng ký được topic trạng thái trong 10 giây.")
+        print("Đã kết nối và đăng ký topic trạng thái. Nhập ON, OFF hoặc EXIT.")
         while True:
             command = input("Nhap lenh: ").strip().upper()
             if command == "EXIT":
                 break
             if command not in {"ON", "OFF"}:
-                print("Lenh khong hop le. Chi nhap ON, OFF hoac EXIT.")
+                print("Lệnh không hợp lệ. Chỉ nhập ON, OFF hoặc EXIT.")
                 continue
             info = client.publish(COMMAND_TOPIC, command, qos=1)
             info.wait_for_publish()
             print(f"Da gui lenh {command} toi light01")
     except KeyboardInterrupt:
-        print("\nDa dung controller.")
+        print("\nĐã dừng controller.")
     except (OSError, TimeoutError) as exc:
-        print(f"Loi MQTT: {exc}")
+        print(f"Lỗi MQTT: {exc}")
     finally:
         client.loop_stop()
         client.disconnect()

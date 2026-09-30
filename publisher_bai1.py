@@ -12,10 +12,10 @@ def main() -> None:
     try:
         connect(client)
         client.loop_start()
-        print(f"Da ket noi MQTT. Topic: {TOPIC}")
-        print("Nhap loi chao; nhap EXIT de ket thuc.")
+        print(f"Đã kết nối MQTT. Topic: {TOPIC}")
+        print("Nhập lời chào; nhập EXIT để kết thúc.")
         while True:
-            greeting = input("Noi dung: ").strip()
+            greeting = input("Nội dung: ").strip()
             if greeting.upper() == "EXIT":
                 break
             if not greeting:
@@ -23,10 +23,10 @@ def main() -> None:
             payload = f"{greeting} - {students}"
             info = client.publish(TOPIC, payload, qos=1)
             info.wait_for_publish()
-            print(f"Da gui: {payload}")
+            print(f"Đã gửi: {payload}")
     except (OSError, KeyboardInterrupt) as exc:
         if isinstance(exc, OSError):
-            print(f"Loi MQTT: {exc}")
+            print(f"Lỗi MQTT: {exc}")
     finally:
         client.loop_stop()
         client.disconnect()
